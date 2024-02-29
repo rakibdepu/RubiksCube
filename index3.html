@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+		<meta name="description" content="Rubik’s Cube">
+		<meta name="keywords" content="Erno Rubik’s Cube">
+
+		<link rel="stylesheet" type="text/css" href="styles/cube.css">
+		<link rel="icon" type="image/png" href="media/cuber-favicon-0064x0064.png">
+		<link rel="apple-touch-icon" href="media/cuber-favicon-0144x0144.png">
+
+		<style>
+			html,
+			body,
+			#container {
+		 	margin: 0px;
+		 	padding: 0px;
+		 	width: 100%;
+		 	height: 96.5%;
+		 }
+
+		 .graydient {
+
+				/* http://www.colorzilla.com/gradient-editor/ */
+				background: #000; /* Old browsers */
+				background: -moz-radial-gradient(center, ellipse cover,  #444 0%, #000000 90%); /* FF3.6+ */
+				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#444), color-stop(90%,#000000)); /* Chrome,Safari4+ */
+				background: -webkit-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* Chrome10+,Safari5.1+ */
+				background: -o-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* Opera 12+ */
+				background: -ms-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* IE10+ */
+				background: radial-gradient(ellipse at center,  #444 0%,#000000 90%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			}
+
+		 #footer{
+		 	text-align: center;
+				font-family: ubuntu;
+			}
+
+			[btn-group] {
+				position: relative;
+				display: inline-block;
+				margin: 0;
+			}
+
+			[btn-group]:before {
+				content: attr(data-grouptype);
+				color: #999;
+				display: block;
+				font-size: 0.8125em;
+				width: 18px;
+				height: 18px;
+				padding: 5px;
+				border-radius: 50%;
+				background: #FFF;
+				position: absolute;
+				left: 50%;
+				top: 24px;
+				margin-left: -14px;
+				line-height: 18px;
+		 }
+		 
+			[btn-group]>a {
+				display: inline-block;
+				padding: 6px 14px;
+				background: #F2F2F2;
+				border-radius: 3px;
+				font-size: 0.8125em;
+				color: #B9BCBC;
+				transition: background .3s ease, color .3s ease;
+		 text-decoration: none;
+				transition: color .3s ease;
+				text-transform: uppercase;
+			}
+
+			[btn-group]>a:nth-of-type(1) {
+				background: #A1D36E;
+				color: #FFF;
+				text-align: left;
+				padding: 12px 20px 12px 10px;
+		 }
+		 
+			[btn-group]>a:nth-of-type(1):hover {
+				background: #94CD5A;
+		 }
+
+			[btn-group]>a:nth-of-type(2) {
+				background: #6AD1DD;
+				color: #FFF;
+				text-align: right;
+				padding: 12px 10px 12px 20px;
+			}
+
+			[btn-group]>a:nth-of-type(2):hover {
+				background: #55CBD8;
+			}
+			
+			p {
+				display: block;
+				color: #FFF;
+				margin-block-start: 0px;
+				margin-block-end: 0px;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+			}
+		</style>
+
+		<title>Cube</title>
+
+	</head>
+	<body class='graydient'>
+		<div id='container'></div>
+		<div id="footer">
+			<div btn-group data-grouptype="X">
+				<p>Whole Cube</p>
+				<a href="javascript:cube.twistQueue.add('X')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('x')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="L">
+				<p>Left Face</p>
+				<a href="javascript:cube.twistQueue.add('L')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('l')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="M">
+				<p>Middle Slice</p>
+				<a href="javascript:cube.twistQueue.add('M')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('m')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="R">
+				<p>Right Face</p>
+				<a href="javascript:cube.twistQueue.add('R')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('r')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="Y">
+				<p>Whole Cube</p>
+				<a href="javascript:cube.twistQueue.add('Y')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('y')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="U">
+				<p>Up Face</p>
+				<a href="javascript:cube.twistQueue.add('U')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('u')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="E">
+				<p>Equator Slice</p>
+				<a href="javascript:cube.twistQueue.add('E')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('e')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="D">
+				<p>Down Face</p>
+				<a href="javascript:cube.twistQueue.add('D')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('d')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="Z">
+				<p>Whole Cube</p>
+				<a href="javascript:cube.twistQueue.add('Z')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('z')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="F">
+				<p>Front Face</p>
+				<a href="javascript:cube.twistQueue.add('F')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('f')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="S">
+				<p>Standing Slice</p>
+				<a href="javascript:cube.twistQueue.add('S')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('s')">&#8630</a>
+			</div>
+			<div btn-group data-grouptype="B">
+				<p>Back Face</p>
+				<a href="javascript:cube.twistQueue.add('B')">&#8631</a>
+				<a href="javascript:cube.twistQueue.add('b')">&#8630</a>
+			</div>
+		</div>
+		<script src='js/cube/cuber.js'></script>
+		<script src='js/deviceMotion.js'></script>
+		<script src='js/jquery-2.1.1.min.js'></script>
+		
+		<script>
+			var container 	= document.querySelector( '#container' ),
+				cube 		= new ERNO.Cube({
+					// hideInvisibleFaces:true
+				});
+
+			cube.camera.position.z -= 150;
+
+			container.appendChild( cube.domElement );
+
+			var motion = deviceMotion( cube, cube.domElement );
+			motion.paused = true;
+
+
+			// INTRO ANIMATION
+
+			var initialDelay = 100;
+
+			cube.cubelets.forEach(function( cubelet, i ){
+
+				var delay;
+				if( cubelet.type === 'core'   ) delay = Math.random() * 100;
+				if( cubelet.type === 'center' ) delay = 200 + Math.random() * ( 400 - 200  );
+				if( cubelet.type === 'edge'   ) delay = 400 + Math.random() * ( 800 - 400  );
+				if( cubelet.type === 'corner' ) delay = 800 + Math.random() * ( 1000 - 800 );
+				var tween = new TWEEN.Tween(cubelet.position).delay(delay + initialDelay).easing(TWEEN.Easing.Quartic.InOut).to({
+					x: cubelet.position.x,
+					y: cubelet.position.y,
+					z: cubelet.position.z
+				}, 2800).onComplete(function() {
+						cubelet.isTweening = false;
+					}.bind( cubelet ))
+
+				cubelet.isTweening = true;
+
+				var distance = 1000;
+				cubelet.position.set(cubelet.addressX * distance, cubelet.addressY * distance, cubelet.addressZ * distance);
+				tween.start( cube.time );
+
+			})
+			var tweenRotation = new TWEEN.Tween(cube.rotation).to({
+				x: cube.rotation.x,
+				y: cube.rotation.y,
+				z: cube.rotation.z
+			}, 3000).easing(TWEEN.Easing.Quartic.InOut).delay(initialDelay).onComplete(function() {
+					cube.mouseControlsEnabled = true;
+					cube.keyboardControlsEnabled = true;
+				motion.paused = true;
+					cube.shuffle();
+				})
+				
+
+
+			cube.position.y = -2000;
+			var tweenPosition = new TWEEN.Tween(cube.position).to({
+				y: 0
+			}, 2000).delay(initialDelay).easing(TWEEN.Easing.Quartic.InOut)
+			cube.rotation.set(180 * Math.PI / 180, 180 * Math.PI / 180, 20 * Math.PI / 180);
+			tweenPosition.start( cube.time );
+			tweenRotation.start( cube.time );
+
+
+		</script>
+	</body>
+</html>
